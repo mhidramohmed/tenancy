@@ -24,8 +24,8 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
     Route::get('/', function () {
-
-            dd(\App\Models\User::all());
+        // $db = DB::connection();
+        //     dd($db);
 
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });
