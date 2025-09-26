@@ -3,6 +3,7 @@
 require __DIR__.'/tenant_api.php';
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CreationController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -27,8 +28,11 @@ foreach (config('tenancy.central_domains') as $domain) {
     });
 
 
+    Route::post('/test',[ CreationController ::class , 'createTenant']);
 
-    
+
+
+
 }
 
 

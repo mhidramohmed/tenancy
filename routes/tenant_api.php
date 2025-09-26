@@ -23,22 +23,27 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 
 Route::middleware([
-'api',
-InitializeTenancyByDomain::class,
-PreventAccessFromCentralDomains::class,
-])->group(function () {
-Route::get('/', function () {
-    return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-});
+    'api',
+    InitializeTenancyByDomain::class,
+    PreventAccessFromCentralDomains::class,
+    ])->group(function () {
 
-Route::get('/status', function () {
-    $db = DB::connection();
-    // dd($db);
+    Route::get('/', function () {
+        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+    });
 
-    return response()->json([
-            'status' => 'tenant API is working',
-            'db' => $db->getDatabaseName() ,
-        ]);
+    Route::get('/status', function () {
+        $db = DB::connection();
+        // dd($db);
 
-});
+        return response()->json([
+                'status' => 'tenant API is working',
+                'db' => $db->getDatabaseName() ,
+            ]);
+
+    });
+
+    Route::post('login', function ($id) {
+
+    });
 });
